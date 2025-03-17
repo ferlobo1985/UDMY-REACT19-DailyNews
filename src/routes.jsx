@@ -5,15 +5,18 @@ import Home from "./components/home";
 import Contact from "./components/contact"
 
 import Header from "./components/header"
+import MainLayout from "./components/layouts/mainLayout";
 
 const Router = () => {
     return(
         <BrowserRouter>
             <Header/>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="contact" element={<Contact/>}/>
-            </Routes>
+            <MainLayout>
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="contact" element={<Contact/>}/>
+                </Routes>
+            </MainLayout>
         </BrowserRouter>
     )
 }
