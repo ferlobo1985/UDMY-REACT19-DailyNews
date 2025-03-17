@@ -5,6 +5,7 @@ import { fetchPosts } from "../../store/utils/thunks";
 import { Button, Spinner } from "react-bootstrap"; 
 import Masonry from "react-masonry-css";
 import { Link } from 'react-router';
+import moment from 'moment'
 
 
 const HomePosts = () => {
@@ -42,7 +43,7 @@ const HomePosts = () => {
                             <div className="author">
                                 <span>{item.author} - </span>
                                 <span>
-                                    {item.createdAt}
+                                    { moment(item.createdAt).format('MM/DD/YYYY')}
                                 </span>
                             </div>
                             <div className="content">
