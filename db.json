@@ -202,5 +202,20 @@
     }
   ],
   "newsletter": [],
-  "contact": []
+  "contact": [
+    {
+      "email": "francis@gmaill.com",
+      "firstname": "Francis",
+      "lastname": "Jones",
+      "message": "Some message",
+      "id": 1
+    },
+    {
+      "email": "sdfsd@gmail.com",
+      "firstname": "Miles",
+      "lastname": "Mcbride",
+      "message": "Some other message",
+      "id": 2
+    }
+  ]
 }

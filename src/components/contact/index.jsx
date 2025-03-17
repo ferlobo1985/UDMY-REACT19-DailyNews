@@ -2,7 +2,9 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { Alert } from "react-bootstrap";
 import { useDispatch } from "react-redux";
+import { sendMessage } from "../../store/utils/thunks";
 
+import { toast } from 'react-toastify'
 
 const Contact = () => {
     const dispatch = useDispatch();
@@ -21,7 +23,20 @@ const Contact = () => {
             .max(500,'Sorry, the message is to long')
         }),
         onSubmit:(values,{ resetForm })=>{
-            console.log(values)
+    
+            dispatch(sendMessage(values))
+            .unwrap()
+            .then(response=>{
+                resetForm();
+                toast.success('Thank you, we will contact you back',{
+                    position:'bottom-right'
+                })
+            })
+            .catch(err=>{
+                toast.error('Sorry, try again later',{
+                    position:'bottom-right'
+                })
+            })
         }
     })
 
