@@ -8,6 +8,18 @@ const Contact = () => {
     const dispatch = useDispatch();
     const formik = useFormik({
         initialValues:{email:'',firstname:'',lastname:'',message:''},
+        validationSchema:Yup.object({
+            email:Yup.string()
+            .required('Sorry, email is required')
+            .email('This email is invalid'),
+            firstname:Yup.string()
+            .required('Sorry, firstname is required'),
+            lastname:Yup.string()
+            .required('Sorry, lastname is required'),
+            message:Yup.string()
+            .required('Sorry,a message is required')
+            .max(500,'Sorry, the message is to long')
+        }),
         onSubmit:(values,{ resetForm })=>{
             console.log(values)
         }
