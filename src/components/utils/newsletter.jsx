@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify'
+import { addToNewsLetter } from "../../store/utils/thunks";
+import { clearNewsLetter } from "../../store/reducers/users";
 
 const NewsLetter = () => {
     const textInput = useRef();
@@ -18,8 +20,23 @@ const NewsLetter = () => {
             return false;
         }
 
-        // POSTING
-
+        dispatch(addToNewsLetter({email:value}))
+        .unwrap()
+        .then( response => {
+            
+            if(response.newsletter === 'added'){
+                toast.success('Thank you !!',{
+                    position:'bottom-right'
+                });
+            }
+            if(response.newsletter === 'failed'){
+                toast.error('Sorry, already on the DB',{
+                    position:'bottom-right'
+                });
+            }
+            textInput.current.value = '';
+            dispatch(clearNewsLetter());
+        })
     }
 
 
